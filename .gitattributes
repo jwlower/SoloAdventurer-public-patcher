@@ -1,2 +1,2 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Store files byte-for-byte so manifest hashes match what friends download.
+* -text
