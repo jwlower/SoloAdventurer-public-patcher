@@ -73,7 +73,8 @@ if ($changed.Count -eq 0) {
 }
 
 try {
-    $notes = (Invoke-WebRequest "$base/CHANGES.txt" -UseBasicParsing).Content -split "`r?`n" | Select-Object -First 15
+    $notes = (Invoke-WebRequest "$base/CHANGES.txt" -UseBasicParsing).Content.TrimStart([char]0xFEFF) -split "`r?`n" |
+        Where-Object { $_ -match '\S' } | Select-Object -First 15
     Write-Host ''
     Write-Host 'Latest changes:' -ForegroundColor Cyan
     $notes | ForEach-Object { Write-Host "  $_" }

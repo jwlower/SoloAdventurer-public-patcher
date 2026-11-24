@@ -36,7 +36,7 @@ $stamp = Get-Date -Format 'yyyy-MM-dd HH:mm'
 $msg = if ($note) { $note } else { 'Patch update' }
 $changesFile = Join-Path $Repo 'CHANGES.txt'
 $old = if (Test-Path $changesFile) { Get-Content $changesFile } else { @() }
-Set-Content -Path $changesFile -Value (@("$stamp  $msg") + $old) -Encoding UTF8
+[IO.File]::WriteAllLines($changesFile, [string[]](@("$stamp  $msg") + $old), (New-Object Text.UTF8Encoding $false))
 git add CHANGES.txt
 
 git commit -q -m "$msg"
