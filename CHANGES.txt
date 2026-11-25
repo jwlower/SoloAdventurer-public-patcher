@@ -1,3 +1,4 @@
+2026-11-24 18:52  Warrior: Charge range fix, passive Victory Rush, Ironclad bonuses for every Unburdened talent, agility-based Unburdened, talent tree arrows fixed
 2026-11-24 18:22  Warrior overhaul: Ironclad/Tempered armor, Harpoon, BFR, Bastion, Shield Toss, ranged Heroic Strike/Execute, crafted-gear talents and more
 2026-11-23 20:38  Fix: Charge and Divine Steed now usable in combat
 2026-11-23 20:01  Class update: Warrior/Warlock/Paladin sheet changes, Imp Intruders, Curse of Doom ranks, gathering 2x faster
