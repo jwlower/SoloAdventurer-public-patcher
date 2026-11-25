@@ -386,12 +386,65 @@ local function CreateSacrificeEyeButton()
     return button
 end
 
+-- Grell Delivery (warlock talent): a second button that sends your Grells to the eye instead of you (addon message
+-- "GRELLS"; the eye's own bar has the same spell).
+local deliveryButton
+
+local function HasGrellDelivery()
+    for tab = 1, GetNumTalentTabs() do
+        for i = 1, GetNumTalents(tab) do
+            local name, _, _, _, rank = GetTalentInfo(tab, i)
+            if name == "Grell Delivery" then
+                return rank and rank > 0
+            end
+        end
+    end
+    return false
+end
+
+local function CreateGrellDeliveryButton()
+    local button = CreateFrame("Button", "SoloAdvGrellDeliveryButton", UIParent)
+    button:SetWidth(40)
+    button:SetHeight(40)
+    button:SetFrameStrata("HIGH")
+    button:SetPoint("LEFT", sacrificeButton, "RIGHT", 12, 0)
+
+    local icon = button:CreateTexture(nil, "ARTWORK")
+    icon:SetAllPoints()
+    icon:SetTexture("Interface\Icons\INV_Misc_Eye_01")
+    button:SetHighlightTexture("Interface\Buttons\ButtonHilight-Square", "ADD")
+
+    local label = button:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    label:SetPoint("TOP", button, "BOTTOM", 0, -2)
+    label:SetText("Grells")
+
+    button:SetScript("OnClick", function()
+        SendAddonMessage(DOUBLE_JUMP_PREFIX, "GRELLS", "WHISPER", PlayerName())
+    end)
+    button:SetScript("OnEnter", function(self)
+        GameTooltip:SetOwner(self, "ANCHOR_TOP")
+        GameTooltip:SetText("Grell Delivery", 1, 1, 1)
+        GameTooltip:AddLine("Sacrifice the Eye of Kilrogg and teleport all of your Grells to where it is. You stay where you are.", nil, nil, nil, 1)
+        GameTooltip:Show()
+    end)
+    button:SetScript("OnLeave", GameTooltip_Hide)
+    button:Hide()
+    return button
+end
+
 local function RefreshSacrificeEye()
     sacrificeButton = sacrificeButton or CreateSacrificeEyeButton()
+    deliveryButton = deliveryButton or CreateGrellDeliveryButton()
     if ControllingEye() then
         sacrificeButton:Show()
+        if HasGrellDelivery() then
+            deliveryButton:Show()
+        else
+            deliveryButton:Hide()
+        end
     else
         sacrificeButton:Hide()
+        deliveryButton:Hide()
     end
 end
 
