@@ -1,5 +1,6 @@
 # Jacob's side: copy the current client patch + addon into this repo, rebuild the manifest, commit and push.
 # Run via D:\Games\Azeroth-core\PUBLISH-PATCH.bat
+param([string]$Note)   # optional: skips the "What changed?" prompt
 $ErrorActionPreference = 'Stop'
 $Repo   = $PSScriptRoot
 $Game   = 'D:\Games\Wow335-AzerothCore'
@@ -8,7 +9,11 @@ $Client = Join-Path $Repo 'client'
 Set-Location $Repo
 
 # 1. Mirror the files friends need from your own game folder.
-Copy-Item (Join-Path $Game 'Data\patch-4.MPQ') (Join-Path $Client 'Data\patch-4.MPQ') -Force
+#    A patch staged in tools-src\solo-out (deployed while WoW was running) is newer than the game's copy: use it.
+$mpq    = Join-Path $Game 'Data\patch-4.MPQ'
+$staged = 'D:\Games\Azeroth-core\tools-src\solo-out\patch-4.MPQ'
+if ((Test-Path $staged) -and (Get-Item $staged).LastWriteTime -gt (Get-Item $mpq).LastWriteTime) { $mpq = $staged }
+Copy-Item $mpq (Join-Path $Client 'Data\patch-4.MPQ') -Force
 $addonSrc = Join-Path $Game 'Interface\AddOns\SoloAdventurer'
 $addonDst = Join-Path $Client 'Interface\AddOns\SoloAdventurer'
 if (Test-Path $addonDst) { Remove-Item $addonDst -Recurse -Force }
@@ -31,7 +36,7 @@ git diff --cached --name-status -- client
 
 # 3. A one-line note friends see when they update.
 Write-Host ''
-$note = Read-Host 'What changed? (one line, shown to friends; Enter to skip)'
+$note = if ($Note) { $Note } else { Read-Host 'What changed? (one line, shown to friends; Enter to skip)' }
 $stamp = Get-Date -Format 'yyyy-MM-dd HH:mm'
 $msg = if ($note) { $note } else { 'Patch update' }
 $changesFile = Join-Path $Repo 'CHANGES.txt'
