@@ -1,6 +1,6 @@
 # Solo Adventurer client patch
 
-Client files for Jacob's AzerothCore server: `Data\patch-4.MPQ` and the `SoloAdventurer` addon.
+Client files for Jacob's AzerothCore server: `Data\patch-4.MPQ`, `Data\patch-5.MPQ` (Classic and BC dungeon maps) and the `SoloAdventurer` addon.
 
 ## Friends: getting updates
 
