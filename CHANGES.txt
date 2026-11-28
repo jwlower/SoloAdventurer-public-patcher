@@ -1,3 +1,4 @@
+2026-11-27 21:23  Warlock: Unruly Summons (every demon summoned while one is out is unruly, 10 min with Twin Contract, may rampage or explode before leaving), Witchcrafts, Improved Miasma, Prolong the Nightmare, Dark Verdict, new talents Unruly Bindings and Twin Contract; Warrior Victory Rush melee only and Auto Shot text fix
 2026-11-25 22:02  Dungeon maps: press M inside Classic and BC dungeons and raids (47 instances) to see the map, floors switch as you move. Needs the update to download a new 38 MB file
 2026-11-25 00:31  Warlock: Void Siphon no longer drains your Voidwalker; Drain Life heals it, cuts 2 sec off Sacrifice per heal, and refunds 50% as mana
 2026-11-24 23:10  Warlock Affliction overhaul: Hex Warden tank (level 15), Blighted Ward, Withering Tether, Miasma, Spreading Corruption, Engorge, Void Siphon, Mana Gorge, Gluttony, Litany of Curses, Devour Affliction; Grell kills are lootable

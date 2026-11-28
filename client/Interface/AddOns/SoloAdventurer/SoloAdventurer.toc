@@ -1,6 +1,6 @@
 ## Interface: 30300
 ## Title: Solo Adventurer
-## Notes: World map fast travel, free talent respec, Double Jump, an aspect and armor bar, a control panel for the hunter's second pet, and a tidier and resizable profession window, auto-sell of junk at vendors for the mod-solo-adventurer server module.
+## Notes: World map fast travel, free talent respec, Double Jump, an aspect and armor bar, a control panel for the hunter's second pet, and a tidier and resizable profession window, a Sell Junk button in the vendor window for the mod-solo-adventurer server module.
 ## Author: local
 ## Version: 1.0
 ## SavedVariables: SoloAdventurerSettings
